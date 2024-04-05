@@ -1,0 +1,6 @@
+.vscode
+.DS_Store
+.tool-versions
+bin
+site/build
+site/node_modules
