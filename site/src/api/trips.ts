@@ -1,9 +1,8 @@
 import { TripFrom } from "../models/Form";
 import { TripsResult } from "../models/Find";
-import { host } from "./api";
 
 export const fetchTrips = async (form: TripFrom): Promise<TripsResult> => {
-    const url = new URL("/api/find_trip", "http://" + host);
+    const url = new URL("/api/find_trip");
 
     if (form.passport === undefined || form.startIATA === undefined || form.endIATA === undefined || form.maxSteps === undefined) {
         return {
