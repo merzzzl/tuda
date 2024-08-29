@@ -1,0 +1,25 @@
+{
+    "name": "Go",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "remoteUser": "root",
+    "mounts": [
+        "source=${localEnv:HOME}/.netrc,target=/root/.netrc,type=bind,consistency=cached",
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    "runArgs": [
+        "--privileged"
+    ],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "files.autoSave": "afterDelay",
+                "files.autoSaveDelay": 2000,
+                "go.lintOnSave": "off",
+                "go.lintTool": "golangci-lint",
+                "go.formatTool": "gofumpt"
+            }
+        }
+    }
+}

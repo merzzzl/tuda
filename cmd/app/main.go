@@ -1,6 +1,9 @@
 package main
 
 import (
+	"crypto/tls"
+	"net/http"
+	"os"
 	"time"
 
 	"github.com/merzzzl/tuda/internal/server"
@@ -9,12 +12,15 @@ import (
 )
 
 const (
-	TTL   = time.Hour * 6
-	Token = "<TOKEN>"
+	TTL = time.Hour * 6
 )
 
+var Token = os.Getenv("TOKEN")
+
 func main() {
-	zerolog.SetGlobalLevel(zerolog.InfoLevel)
+	zerolog.SetGlobalLevel(zerolog.DebugLevel)
+
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 
 	srv := service.NewService(Token, TTL)
 

@@ -38,6 +38,7 @@ func FetchPrices(origin string, destination string) ([]PriceInfo, error) {
 	params.Add("direct", "true")
 	params.Add("unique", "true")
 	params.Add("token", token)
+	params.Add("departure_at", time.Now().Format("2006-01-02"))
 
 	url := fmt.Sprintf("%s?%s", baseURL, params.Encode())
 	resp, err := cli.Get(url)
