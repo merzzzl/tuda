@@ -1,7 +1,9 @@
 import { City } from "../models/City";
 
 export const fetchCities = async (): Promise<{ [key: string]: City }> => {
-    const response = await fetch('/api/cities');
+    const url = new URL("/api/cities", window.location.origin);
+
+    const response = await fetch(url.toString());
 
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

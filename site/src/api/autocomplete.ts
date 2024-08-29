@@ -1,7 +1,7 @@
 import { Place } from "../models/Place";
 
 export const fetchPlaces = async (type: string, term: string): Promise<Place[]> => {
-    const url = new URL("/api/places");
+    const url = new URL("/api/places", window.location.origin);
 
     url.searchParams.append("type", type);
     url.searchParams.append("term", term);

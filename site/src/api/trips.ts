@@ -2,7 +2,7 @@ import { TripFrom } from "../models/Form";
 import { TripsResult } from "../models/Find";
 
 export const fetchTrips = async (form: TripFrom): Promise<TripsResult> => {
-    const url = new URL("/api/find_trip");
+    const url = new URL("/api/find_trip", window.location.origin);
 
     if (form.passport === undefined || form.startIATA === undefined || form.endIATA === undefined || form.maxSteps === undefined) {
         return {

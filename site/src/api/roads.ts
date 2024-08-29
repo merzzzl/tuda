@@ -2,7 +2,7 @@ import { RoadFrom } from "../models/Form";
 import { RoadResult } from "../models/Find";
 
 export const fetchRoads = async (form: RoadFrom): Promise<RoadResult> => {
-    const url = new URL("/api/find_road");
+    const url = new URL("/api/find_road", window.location.origin);
 
     if (form.passport === undefined || form.startIATA === undefined) {
         return {
