@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	"github.com/merzzzl/tuda/internal/api"
+	"github.com/merzzzl/tuda/internal/visadb"
 	"github.com/rs/zerolog/log"
 )
 
@@ -47,7 +48,7 @@ func FindDirections(passport string, currentIATA string) []*Road {
 			continue
 		}
 
-		visaOK, err := api.FetchVisa(passport, cn)
+		visaOK, err := visadb.FetchVisa(passport, cn)
 		if err != nil {
 			log.Err(err).Str("from", passport).Str("to", cn).Msg("visa check failed")
 			continue
@@ -123,7 +124,7 @@ func FindTrips(passport string, startIATA, endIATA string, maxSteps int, state c
 				continue
 			}
 
-			visaOK, err := api.FetchVisa(passport, cn)
+			visaOK, err := visadb.FetchVisa(passport, cn)
 			if err != nil {
 				log.Err(err).Str("from", passport).Str("to", cn).Msg("visa check failed")
 				continue

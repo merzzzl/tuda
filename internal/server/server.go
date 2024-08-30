@@ -10,6 +10,7 @@ import (
 
 	"github.com/merzzzl/tuda/internal/api"
 	"github.com/merzzzl/tuda/internal/service"
+	"github.com/merzzzl/tuda/internal/visadb"
 	"github.com/rs/cors"
 	"github.com/rs/zerolog/log"
 )
@@ -104,7 +105,7 @@ func Handl(srv *service.Service) error {
 	subMux.HandleFunc("/find_road", func(w http.ResponseWriter, r *http.Request) {
 		passport := r.URL.Query().Get("passport")
 		passport = strings.ToLower(passport)
-		_, err := api.FetchVisa(passport, passport)
+		_, err := visadb.FetchVisa(passport, passport)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			return
@@ -124,7 +125,7 @@ func Handl(srv *service.Service) error {
 	subMux.HandleFunc("/find_trip", func(w http.ResponseWriter, r *http.Request) {
 		passport := r.URL.Query().Get("passport")
 		passport = strings.ToLower(passport)
-		_, err := api.FetchVisa(passport, passport)
+		_, err := visadb.FetchVisa(passport, passport)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			return

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"crypto/tls"
-	"net/http"
 	"os"
 	"time"
 
@@ -19,8 +17,6 @@ var Token = os.Getenv("TOKEN")
 
 func main() {
 	zerolog.SetGlobalLevel(zerolog.DebugLevel)
-
-	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 
 	srv := service.NewService(Token, TTL)
 
